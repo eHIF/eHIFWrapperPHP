@@ -1,0 +1,15 @@
+{
+    "name": "eHIF/eHIFWrapperPHP",
+    "description": "A PHP Wrapper for eHIF proccess engine",
+    "minimum-stability": "dev",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "larjohn",
+            "email": "larjohn@gmail.com"
+        }
+    ],
+    "require": {
+        "php-curl-class/php-curl-class": "2.1.0"
+    }
+}

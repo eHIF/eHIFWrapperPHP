@@ -8,19 +8,22 @@
  */
 
 
-use Curl\Curl;
+use GuzzleHttp\Client;
 class Activiti {
 protected  $baseURL;
     const GET = "get";
     const POST = "post";
-    protected $curl;
+    protected $client;
 
 
+    protected $username;
+    protected $password;
 
     public function  __construct($baseURL, $username, $password){
         $this->baseURL = $baseURL;
-        $this->curl = new Curl();
-        $this->curl->setBasicAuthentication($username,$password);
+        $this->client = new Client();
+        $this->username = $username;
+        $this->password = $password;
     }
 
 
@@ -29,7 +32,11 @@ protected  $baseURL;
         switch ($method){
             case self::GET:
 
-                return $this->curl->get($this->baseURL . $url,$data);
+                return $this->client->get($this->baseURL . $url, array('query'=> $data,
+                    'auth' => array('username','password')));
+            default:
+                return null;
+
 
         }
 

@@ -15,7 +15,11 @@ class Type {
     }
 
     public function __get($name){
-        return $this->state->$name;
+        if (method_exists($this, 'get'.$name)) {
+            $method = 'get' . $name;
+            return $this->$method();
+        }
+        else  return $this->state->$name;
     }
 
     public function __set($name, $value){

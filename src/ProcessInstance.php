@@ -8,14 +8,10 @@
  */
 namespace eHIF;
 
-class Process extends Entity  {
+class ProcessInstance extends Entity  {
     public function getdeployment(){
         return $this->_wrapper->getDeployment($this);
 
-    }
-
-    public function getprocessinstances(){
-        return $this->_wrapper->getProcessInstances($this);
     }
 
 }

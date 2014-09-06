@@ -10,14 +10,13 @@
 require 'vendor/autoload.php';
 
 use eHIF\Activiti;
-use eHIF\Process;
+
 
 
 $activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/", "kermit", "kermit");
-$response = $activiti->request("deployments", Activiti::GET);
-$body = json_decode($response->getBody());
+$processes = $activiti->processes->get();
 
+//var_dump($processes);
 
-$var = new Process($body->data[0]);
-
-var_dump($var->name);
+//var_dump($processes[0]->deployment->name);
+var_dump($processes[0]->processinstances[0]->startUserId);

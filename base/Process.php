@@ -6,7 +6,7 @@
  * Time: 12:54 πμ
 
  */
-
-class Process {
+require_once('Type.php');
+class Process extends Type {
 
 }

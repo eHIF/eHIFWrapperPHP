@@ -2,6 +2,7 @@
     "name": "eHIF/eHIFWrapperPHP",
     "description": "A PHP Wrapper for eHIF proccess engine",
     "minimum-stability": "dev",
+    "version": "0.0.1",
     "license": "mit",
     "authors": [
         {
@@ -10,6 +11,6 @@
         }
     ],
     "require": {
-        "php-curl-class/php-curl-class": "2.1.0"
+        "guzzlehttp/guzzle": "~4.0"
     }
 }

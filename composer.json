@@ -1,5 +1,5 @@
 {
-    "name": "eHIF/eHIFWrapperPHP",
+    "name": "ehif/ehif-wrapper-php",
     "description": "A PHP Wrapper for eHIF proccess engine",
     "minimum-stability": "dev",
     "version": "0.0.1",

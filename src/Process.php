@@ -6,7 +6,8 @@
  * Time: 12:54 πμ
 
  */
-require_once('Type.php');
+namespace eHIF;
+
 class Process extends Type {
 
 }

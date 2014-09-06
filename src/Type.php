@@ -5,7 +5,7 @@
  * Date: 11/8/2014
  * Time: 1:03 πμ
  */
-
+namespace eHIF;
 class Type {
 
     private $state;

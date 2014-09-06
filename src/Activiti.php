@@ -7,7 +7,7 @@
 
  */
 
-
+namespace eHIF;
 use GuzzleHttp\Client;
 class Activiti {
 protected  $baseURL;
@@ -33,7 +33,7 @@ protected  $baseURL;
             case self::GET:
 
                 return $this->client->get($this->baseURL . $url, array('query'=> $data,
-                    'auth' => array('username','password')));
+                    'auth' => array($this->username, $this->password)));
             default:
                 return null;
 

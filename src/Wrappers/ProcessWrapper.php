@@ -9,6 +9,7 @@
 namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
+use eHIF\ProcessModel;
 
 
 class ProcessWrapper extends Wrapper{
@@ -40,6 +41,16 @@ class ProcessWrapper extends Wrapper{
     public function getProcessInstances($process){
         $processInstanceWrapper = new ProcessInstanceWrapper($this->_activiti);
         return $processInstanceWrapper->getWhereProcess($process->id);
+    }
+
+    public function getModel($process){
+
+        $j_model =  $this->_activiti->request("repository/process-definitions/".$process->id."/model", Activiti::GET);
+
+        $model = new ProcessModel($j_model);
+
+        return $model;
+
     }
 
 } 

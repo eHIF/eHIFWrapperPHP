@@ -9,6 +9,8 @@
 namespace eHIF;
 
 
+use GuzzleHttp\Stream\GuzzleStreamWrapper;
+
 class Entity extends Type {
 
     protected  $_wrapper = null;
@@ -23,7 +25,9 @@ class Entity extends Type {
             $this->_wrapper = $wrapper;
         }
         else{
-            $wrapperClassName = get_class() . "Wrapper";
+            $thisClassName =  get_class($this);
+            $reflector =  new \ReflectionClass($thisClassName);
+            $wrapperClassName = "eHIF\\Wrappers\\".$reflector->getShortName() . "Wrapper";
             $this->_wrapper = new $wrapperClassName(Activiti::$last);
         }
 

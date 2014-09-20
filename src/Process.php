@@ -18,4 +18,10 @@ class Process extends Entity  {
         return $this->_wrapper->getProcessInstances($this);
     }
 
+    public function getprocessModel(){
+        return $this->_wrapper->getModel($this);
+    }
+
+
+
 }

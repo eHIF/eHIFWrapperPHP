@@ -46,4 +46,10 @@ class ProcessInstanceWrapper extends Wrapper{
     }
 
 
+
+    public function getTasks($procesInstance){
+        $taskWrapper = new TaskWrapper($this->_activiti);
+        return $taskWrapper->getWhereProcessInstance($procesInstance->id);
+    }
+
 } 

@@ -40,6 +40,12 @@ class UserWrapper extends Wrapper{
         return $taskWrapper->getUserTasks($user->id);
     }
 
+    public function  getInstances($user){
+
+        $processInstanceWrapper = new ProcessInstanceWrapper($this->_activiti);
+        return $processInstanceWrapper->getUserInstances($user->id);
+    }
+
 
 
 } 

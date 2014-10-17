@@ -82,18 +82,19 @@ protected  $baseURL;
 
             case self::PUT:
                 $response = $this->client->put($this->baseURL . $action,array(
-                    "body"=>json_encode($data),
+                    "json"=>($data),
                     'auth' => array($this->username, $this->password)
                 ));
-                return $response;
+                $body = json_decode($response->getBody());
+                return $body;
 
             case self::POST:
                 $response = $this->client->post($this->baseURL . $action,array(
-                    "body"=>$data,
+                    "json"=>($data),
                     'auth' => array($this->username, $this->password)
                 ));
-                return $response;
-
+                $body = json_decode($response->getBody());
+                return $body;
             default:
                 return null;
 

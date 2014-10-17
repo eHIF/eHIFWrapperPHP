@@ -14,4 +14,8 @@ class ProcessInstance extends Entity  {
 
     }
 
+    public function gettasks(){
+        return $this->_wrapper->getTasks($this);
+    }
+
 }

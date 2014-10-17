@@ -22,6 +22,10 @@ class Process extends Entity  {
         return $this->_wrapper->getModel($this);
     }
 
+    public function startInstance(){
+        return $this->_wrapper->startInstance($this);
+    }
+
 
 
 }

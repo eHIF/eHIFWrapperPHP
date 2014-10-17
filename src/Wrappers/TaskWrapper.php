@@ -10,6 +10,7 @@ namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
 use eHIF\ProcessModel;
+use eHIF\ProcessInstance;
 use eHIF\Task;
 
 
@@ -63,5 +64,30 @@ class TaskWrapper extends Wrapper
         $response = $this->_activiti->put("task/" . $task->id . "/complete", $formData);
         return $response;
     }
+
+
+    public function getWhereProcessInstance($processInstanceId){
+        $j_process_tasks =  $this->_activiti->request("runtime/tasks", Activiti::GET,
+            array("processInstanceId"=>$processInstanceId));
+
+        $tasks = array();
+
+        foreach($j_process_tasks->data as $j_process_task){
+            $tasks[] = new Task($j_process_task, $this);
+        }
+
+        return $tasks;
+    }
+
+
+    public function assignUser($task,$user){
+        $response = $this->_activiti->put("runtime/tasks/" . $task->id , array(
+            "assignee"=>$user->id
+        ));
+        var_dump($response);die;
+        return $response;
+    }
+
+
 
 }

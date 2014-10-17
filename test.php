@@ -13,13 +13,18 @@ use eHIF\Activiti;
 
 
 
-$activiti = new Activiti("http://localhost:8080/activiti-rest/service/", "kermit", "kermit");
+$activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/", "kermit", "kermit");
 $processes = $activiti->processes->get();
 $users = $activiti->users->get();
 $tasks = $activiti->tasks->get();
-
-//var_dump($processes);
-
+$instance = $processes[1]->startInstance();
+$instance->tasks[0]->assign($users[2]);
+$tasks = $users[2]->tasks;
+var_dump($tasks);
+$tasks[0]->complete();
+//var_dump($instance->tasks[0]->name);
+//var_dump($processes[1]->processinstances);
+die;
 //var_dump($processes[0]->deployment->name);
 //var_dump($processes[0]->processinstances[0]->startUserId);
 //var_dump($tasks);

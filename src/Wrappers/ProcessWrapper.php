@@ -9,6 +9,7 @@
 namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
+use eHIF\ProcessInstance;
 use eHIF\ProcessModel;
 
 
@@ -51,6 +52,20 @@ class ProcessWrapper extends Wrapper{
 
         return $model;
 
+    }
+
+    public function startInstance($process){
+
+
+        $result = $this->_activiti->request("runtime/process-instances", Activiti::POST, array(
+            "processDefinitionId"=>"D1_1:1:38636"
+        ));
+
+
+
+        $processInstance = new ProcessInstance($result);
+
+        return $processInstance;
     }
 
 } 

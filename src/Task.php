@@ -14,6 +14,11 @@ public function getform(){
     return $this->_wrapper->getForm($this);
 }
 
+    public function assign($user){
+        $this->_wrapper->assignUser($this,$user);
+    }
+
+
     public function complete(array $formData = array()){
         $this->_wrapper->completeTask($this, $formData);
     }

@@ -54,11 +54,12 @@ class ProcessWrapper extends Wrapper{
 
     }
 
-    public function startInstance($process){
+    public function startInstance($process, array $variables = array()){
 
 
         $result = $this->_activiti->request("runtime/process-instances", Activiti::POST, array(
-            "processDefinitionId"=>"D1_1:1:38636"
+            "processDefinitionId"=>$process->id,
+            "variables" => $variables,
         ));
 
 

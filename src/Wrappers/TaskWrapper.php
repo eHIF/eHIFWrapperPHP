@@ -40,7 +40,10 @@ class TaskWrapper extends Wrapper
     public function getUserTasks($user_id)
     {
         $j_tasks = $this->_activiti->request("runtime/tasks", Activiti::GET,
-            array("assignee" => $user_id));
+            array("assignee" => $user_id,
+                "includeProcessVariables"=>true,
+                "includeTaskLocalVariables"=>true,
+            ));
 
         $tasks = array();
 

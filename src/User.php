@@ -8,10 +8,16 @@
  */
 namespace eHIF;
 
+use eHIF\Wrappers\UserWrapper;
+
 class User extends Entity  {
 
     public function gettasks(){
         return $this->_wrapper->getTasks($this);
+    }
+
+    public static function current(){
+        return UserWrapper::current();
     }
 
 

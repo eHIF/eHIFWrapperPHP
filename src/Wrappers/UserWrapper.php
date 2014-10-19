@@ -15,6 +15,13 @@ use eHIF\User;
 
 class UserWrapper extends Wrapper{
 
+
+    public static function current(){
+        $username = Activiti::$last->username;
+        $current = array("id"=>$username);
+        return new User($current,new UserWrapper(Activiti::$last));
+    }
+
     public function get($id=null){
         if(!empty($id)){
             $j_user =  $this->_activiti->request("identity/users/".$id, Activiti::GET);

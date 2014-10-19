@@ -24,7 +24,7 @@ protected  $baseURL;
     public  static $last;
 
 
-    protected $username;
+    public $username;
     protected $password;
 
     public $processes;

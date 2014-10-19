@@ -16,7 +16,7 @@ class ProcessInstanceWrapper extends Wrapper{
     public function get($id=null){
         if(!empty($id)){
             $j_process_instance =  $this->_activiti->request("process-instances/".$id, Activiti::GET,
-                array("includeProcessVariables"=>true));
+                array("includeProcessVariables"=>"true"));
             $process_instance = new ProcessInstance($j_process_instance, $this);
             return $process_instance;
         }

@@ -67,6 +67,7 @@ class ProcessWrapper extends Wrapper{
 
         $result = $this->_activiti->request("runtime/process-instances", Activiti::POST, array(
             "processDefinitionId"=>$process->id,
+            "returnVariables"=>"true",
             "variables" => $vars,
         ));
 

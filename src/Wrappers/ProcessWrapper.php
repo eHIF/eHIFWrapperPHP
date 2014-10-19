@@ -17,12 +17,12 @@ class ProcessWrapper extends Wrapper{
 
     public function get($id=null){
         if(!empty($id)){
-            $j_process =  $this->_activiti->request("process-definitions/".$id, Activiti::GET);
+            $j_process =  $this->_activiti->request("repository/process-definitions/".$id, Activiti::GET);
             $process = new Process($j_process, $this);
             return $process;
         }
         else{
-            $j_processes =  $this->_activiti->request("process-definitions", Activiti::GET);
+            $j_processes =  $this->_activiti->request("/repository/process-definitions", Activiti::GET);
             $processes = array();
 
             foreach($j_processes->data as $j_process){

@@ -19,7 +19,11 @@ class Type {
             $method = 'get' . $name;
             return $this->$method();
         }
-        else  return $this->state->$name;
+        else
+            if(isset($this->state->$name)) return  $this->state->$name;
+            else
+                if(isset($this->state[$name])) return $this->state[$name];
+        else return null;
     }
 
     public function __set($name, $value){

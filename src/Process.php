@@ -22,7 +22,7 @@ class Process extends Entity  {
         return $this->_wrapper->getModel($this);
     }
 
-    public function startInstance($variables){
+    public function startInstance(array $variables = array()){
         return $this->_wrapper->startInstance($this, $variables);
     }
 

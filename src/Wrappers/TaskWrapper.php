@@ -10,7 +10,7 @@ namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
 use eHIF\ProcessModel;
-use eHIF\ProcessInstance;
+
 use eHIF\Task;
 
 
@@ -40,7 +40,7 @@ class TaskWrapper extends Wrapper
     public function getUserTasks($user_id)
     {
         $j_tasks = $this->_activiti->request("runtime/tasks", Activiti::GET,
-            array("assignee" => $user_id,
+            array("candidateOrAssigned" => $user_id,
                 "includeProcessVariables"=>"true",
                 "includeTaskLocalVariables"=>"true",
             ));
@@ -87,7 +87,7 @@ class TaskWrapper extends Wrapper
         $response = $this->_activiti->put("runtime/tasks/" . $task->id , array(
             "assignee"=>$user->id
         ));
-        var_dump($response);die;
+
         return $response;
     }
 

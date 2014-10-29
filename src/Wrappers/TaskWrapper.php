@@ -64,7 +64,8 @@ class TaskWrapper extends Wrapper
 
     public function completeTask($task, $formData)
     {
-        $response = $this->_activiti->put("task/" . $task->id . "/complete", $formData);
+        $body = array("action"=>"complete", "variables"=>$formData);
+        $response = $this->_activiti->post("runtime/tasks/" . $task->id , $body);
         return $response;
     }
 

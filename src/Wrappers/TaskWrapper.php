@@ -57,7 +57,7 @@ class TaskWrapper extends Wrapper
 
     public function getForm($task)
     {
-        $j_form = $this->_activiti->request("form/" . $task->id . "/properties", Activiti::GET);
+        $j_form = $this->_activiti->request("form/form-data?taskId=" . $task->id , Activiti::GET);
 
         return $j_form;
     }

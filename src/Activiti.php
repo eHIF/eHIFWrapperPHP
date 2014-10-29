@@ -8,6 +8,7 @@
  */
 
 namespace eHIF;
+use eHIF\Wrappers\ProcessInstanceWrapper;
 use eHIF\Wrappers\UserWrapper;
 use GuzzleHttp\Client;
 use eHIF\Wrappers\ProcessWrapper;
@@ -40,6 +41,7 @@ protected  $baseURL;
         $this->password = $password;
 
         $this->processes = new ProcessWrapper($this);
+        $this->processInstances = new ProcessInstanceWrapper($this);
         $this->users = new UserWrapper($this);
         $this->tasks = new TaskWrapper($this);
 

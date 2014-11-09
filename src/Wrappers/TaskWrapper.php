@@ -9,6 +9,7 @@
 namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
+use eHIF\ProcessInstance;
 use eHIF\ProcessModel;
 
 use eHIF\Task;
@@ -87,6 +88,27 @@ class TaskWrapper extends Wrapper
         }
 
         return $tasks;
+    }
+
+    public function processInstance($task){
+        $processInstanceId = $task->processInstanceId;
+
+        $processInstanceWrapper = new ProcessInstanceWrapper($this->_activiti);
+
+        $processInstance = $processInstanceWrapper->get($processInstanceId);
+
+        return $processInstance;
+
+    }
+    public function processDefinition($task){
+        $processDefinitionId = $task->processDefinitionId;
+
+        $processDefinitionWrapper = new ProcessWrapper($this->_activiti);
+
+        $process = $processDefinitionWrapper->get($processDefinitionId);
+
+        return $process;
+
     }
 
 

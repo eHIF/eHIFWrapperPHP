@@ -22,6 +22,13 @@ public function getform(){
     public function complete(array $formData = array()){
         $this->_wrapper->completeTask($this, $formData);
     }
-    
+
+    public function getprocessInstance(){
+        $this->_wrapper->processInstance($this);
+    }
+
+    public function getprocess(){
+        $this->_wrapper->processInstance($this);
+    }
 
 }

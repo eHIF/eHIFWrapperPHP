@@ -17,7 +17,7 @@ class ProcessWrapper extends Wrapper{
 
     public function get($id=null){
         if(!empty($id)){
-            $j_process =  $this->_activiti->request("repository/process-definitions/".$id, Activiti::GET);
+            $j_process =  $this->_activiti->get("repository/process-definitions/".$id, array(), true);
             $process = new Process($j_process, $this);
             return $process;
         }

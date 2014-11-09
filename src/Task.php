@@ -29,7 +29,7 @@ public function getform(){
 
     public function getprocess(){
         return $this->_wrapper->processDefinition($this);
-        
+
     }
 
 }

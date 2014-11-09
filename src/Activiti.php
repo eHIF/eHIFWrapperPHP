@@ -13,8 +13,10 @@ use eHIF\Wrappers\UserWrapper;
 use GuzzleHttp\Client;
 use eHIF\Wrappers\ProcessWrapper;
 use eHIF\Wrappers\TaskWrapper;
-use GuzzleHttp\Subscriber\Log\LogSubscriber;
-use GuzzleHttp\Subscriber\Log\Formatter ;
+
+use Illuminate\Cache\CacheManager;
+use Illuminate\Filesystem\Filesystem;
+
 class Activiti {
 protected  $baseURL;
     const GET = "get";
@@ -49,6 +51,26 @@ protected  $baseURL;
         self::$last = $this;
     }
 
+    private static  $cache;
+    private static  function getCache(){
+        if(!isset(self::$cache)){
+
+            $app = array(
+                'files' => new Filesystem,
+                'config' => array(
+                    'cache.driver' => 'file',
+                    'cache.path' => sys_get_temp_dir(),
+                    'cache.prefix' => 'eHIF'
+                )
+            );
+
+            $cacheManager = new CacheManager($app);
+            self::$cache = $cacheManager->driver();
+
+            return self::$cache;
+        }
+        else return  self::$cache;
+    }
 
     /**
      * Alias for PUT request
@@ -64,8 +86,33 @@ protected  $baseURL;
         return $this->request($url,Activiti::POST, $data);
     }
 
-    function get($url, array $data = array()){
-        return $this->request($url,Activiti::GET, $data);
+    function get($url, array $data = array(), $fromCache = false){
+
+
+        if($fromCache){
+            $cache = self::getCache();
+            if($cache->has("$url")) {
+
+
+                return $cache->get($url);
+
+            }
+            else{
+                $stuff =  $this->request($url,Activiti::GET, $data);
+                $cache->add($url, $stuff,600);
+                return $stuff;
+            }
+        }
+        else{
+
+            return $this->request($url,Activiti::GET, $data);
+        }
+
+
+
+
+
+
     }
 
 

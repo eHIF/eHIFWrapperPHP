@@ -21,7 +21,7 @@ class TaskWrapper extends Wrapper
     public function get($id = null)
     {
         if (!empty($id)) {
-            $j_task = $this->_activiti->request("runtime/tasks/" . $id, Activiti::GET);
+            $j_task = $this->_activiti->get("runtime/tasks/" . $id, array(), true);
             $task = new Task($j_task, $this);
             return $task;
         } else {

@@ -20,11 +20,11 @@ $tasks = $activiti->tasks->get();
 $instance = $processes[1]->startInstance();
 $instance->tasks[0]->assign($users[2]);
 $tasks = $users[2]->tasks;
-var_dump($tasks);
+//var_dump($tasks);
 $tasks[0]->complete();
 //var_dump($instance->tasks[0]->name);
 //var_dump($processes[1]->processinstances);
-die;
+//die;
 //var_dump($processes[0]->deployment->name);
 //var_dump($processes[0]->processinstances[0]->startUserId);
 //var_dump($tasks);
@@ -38,4 +38,4 @@ $data = array(
 );
 
 $response = $activiti->tasks->get(17530)->complete($data);
-var_dump($response);
+//var_dump($response);

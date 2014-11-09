@@ -24,11 +24,11 @@ public function getform(){
     }
 
     public function getprocessInstance(){
-        $this->_wrapper->processInstance($this);
+        return $this->_wrapper->processInstance($this);
     }
 
     public function getprocess(){
-        $this->_wrapper->processInstance($this);
+        return $this->_wrapper->processDefinition($this);
     }
 
 }

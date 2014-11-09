@@ -17,6 +17,7 @@ $activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/"
 $processes = $activiti->processes->get();
 $users = $activiti->users->get();
 $tasks = $activiti->tasks->get();
+var_dump($tasks[0]->processInstance);
 $instance = $processes[1]->startInstance();
 $instance->tasks[0]->assign($users[2]);
 $tasks = $users[2]->tasks;

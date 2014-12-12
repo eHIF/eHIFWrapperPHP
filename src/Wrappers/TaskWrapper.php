@@ -25,7 +25,7 @@ class TaskWrapper extends Wrapper
             $task = new Task($j_task, $this);
             return $task;
         } else {
-            $j_tasks = $this->_activiti->request("runtime/tasks", Activiti::GET);
+            $j_tasks = $this->_activiti->get("runtime/tasks",array("candidateOrAssigned", $this->_activiti->username));
             $tasks = array();
 
             foreach ($j_tasks->data as $j_task) {

@@ -22,7 +22,7 @@ class Type {
         else
             if(isset($this->state->$name)) return  $this->state->$name;
             else
-                if(isset($this->state[$name])) return $this->state[$name];
+                if(is_array($this->state) && isset($this->state[$name])) return $this->state[$name];
         else return null;
     }
 

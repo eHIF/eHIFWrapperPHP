@@ -22,7 +22,7 @@ class ProcessWrapper extends Wrapper{
             return $process;
         }
         else{
-            $j_processes =  $this->_activiti->request("repository/process-definitions", Activiti::GET);
+            $j_processes =  $this->_activiti->get("repository/process-definitions", array("startableByUser"=>$this->_activiti->username));
             $processes = array();
 
             foreach($j_processes->data as $j_process){

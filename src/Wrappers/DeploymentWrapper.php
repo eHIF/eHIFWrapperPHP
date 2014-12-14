@@ -16,14 +16,14 @@ class DeploymentWrapper extends Wrapper {
     public function get($id=null){
         if(!empty($id)){
 
-            $j_deployment =  $this->_activiti->request("repository/deployments/".$id, Activiti::GET);
+            $j_deployment =  $this->_activiti->get("repository/deployments/".$id, array(), true);
 
             $deployment = new Deployment($j_deployment, $this);
 
             return $deployment;
         }
         else{
-            $j_deployments =  $this->_activiti->request("repository/deployments", Activiti::GET);
+            $j_deployments =  $this->_activiti->get("repository/deployments",array(), true);
             $deployments = array();
 
             foreach($j_deployments->data as $j_deployment){

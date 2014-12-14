@@ -24,7 +24,7 @@ class UserWrapper extends Wrapper{
 
     public function get($id=null){
         if(!empty($id)){
-            $j_user =  $this->_activiti->request("identity/users/".$id, Activiti::GET);
+            $j_user =  $this->_activiti->get("identity/users/".$id, Activiti::GET);
             $user = new User($j_user, $this);
             return $user;
         }

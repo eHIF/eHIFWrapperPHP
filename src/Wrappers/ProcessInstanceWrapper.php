@@ -56,7 +56,7 @@ class ProcessInstanceWrapper extends Wrapper{
 
     public function getSubprocessInstances($processInstance){
 
-        $j_process_instances =  $this->_activiti->get("runtime/process-instances",array("superProcessInstanceId"=>$processInstance->id),true);
+        $j_process_instances =  $this->_activiti->get("runtime/process-instances",array("superProcessInstanceId"=>$processInstance->id),false);
         $process_instances = array();
 
         foreach($j_process_instances->data as $j_process_instance){

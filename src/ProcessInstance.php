@@ -18,5 +18,9 @@ class ProcessInstance extends Entity  {
         return $this->_wrapper->getTasks($this);
     }
 
+    public function getSubprocessInstances(){
+        return $this->_wrapper->getSubprocessInstances($this);
+    }
+
 
 }

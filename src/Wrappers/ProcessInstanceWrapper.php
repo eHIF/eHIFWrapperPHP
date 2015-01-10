@@ -68,4 +68,93 @@ class ProcessInstanceWrapper extends Wrapper{
 
 
 
+    public function getVariables($processInstance){
+
+        $id = $processInstance->id;
+
+        $j_variables =  $this->_activiti->get("runtime/process-instances/".$id. '/variables',
+            array(), false);
+
+        $variables = array();
+        foreach($j_variables as $j_variable){
+            $variables[$j_variable->name] = $j_variable->value;
+        }
+
+        return $variables;
+
+    }
+
+    public function getVariable($processInstance, $variableName){
+        $id = $processInstance->id;
+
+        $j_variable =  $this->_activiti->get("runtime/process-instances/".$id. '/variables/'.$variableName ,
+            array(), false);
+
+        return $j_variable->value;
+
+
+    }
+
+    public function setVariables($processInstance, array $variables){
+
+        $id = $processInstance->id;
+        $j_variables = array();
+
+        foreach ($variables as $variableName=>$value) {
+            $j_variables[] = array(
+                "name"=>$variableName,
+                "value"=>$value,
+                "type"=>gettype($value)
+            );
+        }
+
+        $response = $this->_activiti->put("runtime/process-instances/".$id."/variables" , $j_variables);
+
+        return $response;
+
+
+    }
+
+    public function setVariable($processInstance, $variableName, $variableValue){
+        $id = $processInstance->id;
+
+
+
+        $j_variable = array(
+                "name"=>$variableName,
+                "value"=>$variableValue,
+                "type"=>gettype($variableValue)
+        );
+
+
+        $response = $this->_activiti->put("runtime/process-instances/".$id."/variables/", [$j_variable]);
+
+        return $response;
+
+    }
+
+
+
+    public function deleteVariables($processInstance){
+
+        $id = $processInstance->id;
+
+
+        $response = $this->_activiti->delete("runtime/process-instances/".$id."/variables");
+
+        return $response;
+
+
+    }
+
+    public function deleteVariable($processInstance, $variableName){
+        $id = $processInstance->id;
+
+        $response = $this->_activiti->delete("runtime/process-instances/".$id."/variables/", $variableName);
+
+        return $response;
+
+    }
+
+
 } 

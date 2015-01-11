@@ -90,7 +90,7 @@ class TaskWrapper extends Wrapper
         return $tasks;
     }
 
-    public function processInstance($task){
+    public function processInstance(Task $task){
         $processInstanceId = $task->processInstanceId;
 
         $processInstanceWrapper = new ProcessInstanceWrapper($this->_activiti);
@@ -100,7 +100,7 @@ class TaskWrapper extends Wrapper
         return $processInstance;
 
     }
-    public function processDefinition($task){
+    public function processDefinition(Task $task){
         $processDefinitionId = $task->processDefinitionId;
 
         $processDefinitionWrapper = new ProcessWrapper($this->_activiti);

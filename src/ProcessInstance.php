@@ -27,7 +27,7 @@ class ProcessInstance extends Entity  {
         return $this->_wrapper->getVariables($this);
     }
 
-    public function getvariable($variableName){
+    public function getVariable($variableName){
         return $this->_wrapper->getVariable($this, $variableName);
     }
 

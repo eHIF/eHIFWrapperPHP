@@ -22,6 +22,10 @@ class ProcessInstance extends Entity  {
         return $this->_wrapper->getSubprocessInstances($this);
     }
 
+    public function getSuperprocessInstances(){
+        return $this->_wrapper->getSuperprocessInstances($this);
+    }
+
 
     public function getvariables(){
         return $this->_wrapper->getVariables($this);

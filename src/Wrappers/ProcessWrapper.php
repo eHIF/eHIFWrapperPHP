@@ -15,9 +15,9 @@ use eHIF\ProcessModel;
 
 class ProcessWrapper extends Wrapper{
 
-    public function get($id=null){
+    public function get($id=null, $size=10000){
         if(!empty($id)){
-            $j_process =  $this->_activiti->get("repository/process-definitions/".$id, array(), true);
+            $j_process =  $this->_activiti->get("repository/process-definitions/".$id, array("size"=>$size), true);
             $process = new Process($j_process, $this);
             return $process;
         }

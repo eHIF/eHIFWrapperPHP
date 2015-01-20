@@ -18,10 +18,10 @@ use eHIF\Task;
 class TaskWrapper extends Wrapper
 {
 
-    public function get($id = null)
+    public function get($id = null, $size=10000)
     {
         if (!empty($id)) {
-            $j_task = $this->_activiti->get("runtime/tasks/" . $id, array(), true);
+            $j_task = $this->_activiti->get("runtime/tasks/" . $id, array("size"=>$size), true);
             $task = new Task($j_task, $this);
             return $task;
         } else {

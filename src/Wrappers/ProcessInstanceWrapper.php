@@ -14,10 +14,10 @@ use GuzzleHttp\Exception\RequestException;
 
 class ProcessInstanceWrapper extends Wrapper{
 
-    public function get($id=null){
+    public function get($id=null, $size=10000){
         if(!empty($id)){
             $j_process_instance =  $this->_activiti->get("runtime/process-instances/".$id,
-                array("includeProcessVariables"=>"true"), true);
+                array("includeProcessVariables"=>"true", "size"=>$size), true);
             $process_instance = new ProcessInstance($j_process_instance, $this);
             return $process_instance;
         }

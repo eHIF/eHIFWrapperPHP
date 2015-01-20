@@ -10,6 +10,7 @@ namespace eHIF\Wrappers;
 use eHIF\Activiti;
 use eHIF\Process;
 use eHIF\ProcessInstance;
+use GuzzleHttp\Exception\RequestException;
 
 class ProcessInstanceWrapper extends Wrapper{
 
@@ -82,27 +83,41 @@ class ProcessInstanceWrapper extends Wrapper{
 
     public function getVariables($processInstance){
 
-        $id = $processInstance->id;
+        try{
+            $id = $processInstance->id;
 
-        $j_variables =  $this->_activiti->get("runtime/process-instances/".$id. '/variables',
-            array(), false);
+            $j_variables =  $this->_activiti->get("runtime/process-instances/".$id. '/variables',
+                array(), false);
 
-        $variables = array();
-        foreach($j_variables as $j_variable){
-            $variables[$j_variable->name] = $j_variable->value;
+            $variables = array();
+            foreach($j_variables as $j_variable){
+                $variables[$j_variable->name] = $j_variable->value;
+            }
+
+            return $variables;
+        }
+        catch(RequestException $ex){
+            return null;
         }
 
-        return $variables;
+
 
     }
 
     public function getVariable($processInstance, $variableName){
-        $id = $processInstance->id;
 
-        $j_variable =  $this->_activiti->get("runtime/process-instances/".$id. '/variables/'.$variableName ,
-            array(), false);
+        try{
+            $id = $processInstance->id;
 
-        return $j_variable->value;
+            $j_variable =  $this->_activiti->get("runtime/process-instances/".$id. '/variables/'.$variableName ,
+                array(), false);
+
+            return $j_variable->value;
+        }
+        catch(RequestException $ex){
+            return null;
+        }
+
 
 
     }

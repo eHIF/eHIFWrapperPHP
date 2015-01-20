@@ -21,7 +21,7 @@ class ProcessInstanceWrapper extends Wrapper{
             return $process_instance;
         }
         else{
-            $j_process_instances =  $this->_activiti->get("runtime/process-instances",array(),true);
+            $j_process_instances =  $this->_activiti->get("runtime/process-instances",array("includeProcessVariables"=>"true"),true);
             $process_instances = array();
 
             foreach($j_process_instances->data as $j_process_instance){

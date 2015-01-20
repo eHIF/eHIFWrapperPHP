@@ -21,11 +21,11 @@ class TaskWrapper extends Wrapper
     public function get($id = null, $size=10000)
     {
         if (!empty($id)) {
-            $j_task = $this->_activiti->get("runtime/tasks/" . $id, array("size"=>$size), true);
+            $j_task = $this->_activiti->get("runtime/tasks/" . $id, array(), true);
             $task = new Task($j_task, $this);
             return $task;
         } else {
-            $j_tasks = $this->_activiti->get("runtime/tasks",array("candidateOrAssigned", $this->_activiti->username), true);
+            $j_tasks = $this->_activiti->get("runtime/tasks",array("candidateOrAssigned", $this->_activiti->username, "size"=>$size), true);
             $tasks = array();
 
             foreach ($j_tasks->data as $j_task) {

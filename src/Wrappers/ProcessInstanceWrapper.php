@@ -17,12 +17,12 @@ class ProcessInstanceWrapper extends Wrapper{
     public function get($id=null, $size=10000){
         if(!empty($id)){
             $j_process_instance =  $this->_activiti->get("runtime/process-instances/".$id,
-                array("includeProcessVariables"=>"true", "size"=>$size), true);
+                array("includeProcessVariables"=>"true",), true);
             $process_instance = new ProcessInstance($j_process_instance, $this);
             return $process_instance;
         }
         else{
-            $j_process_instances =  $this->_activiti->get("runtime/process-instances",array("includeProcessVariables"=>"true"),true);
+            $j_process_instances =  $this->_activiti->get("runtime/process-instances",array("includeProcessVariables"=>"true",  "size"=>$size),true);
             $process_instances = array();
 
             foreach($j_process_instances->data as $j_process_instance){

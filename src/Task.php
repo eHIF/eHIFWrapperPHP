@@ -12,12 +12,11 @@ class Task extends Entity  {
 
 public function getform(){
     return $this->_wrapper->getForm($this);
-}
+    }
 
     public function assign($user){
         $this->_wrapper->assignUser($this,$user);
     }
-
 
     public function complete(array $formData = array()){
         $this->_wrapper->completeTask($this, $formData);
@@ -29,7 +28,9 @@ public function getform(){
 
     public function getprocess(){
         return $this->_wrapper->processDefinition($this);
-
     }
 
+    public function gethistory(){
+        return $this->_wrapper->getHistory($this);
+    }
 }

@@ -11,7 +11,6 @@ namespace eHIF;
 class ProcessInstance extends Entity  {
     public function getdeployment(){
         return $this->_wrapper->getDeployment($this);
-
     }
 
     public function gettasks(){
@@ -37,12 +36,14 @@ class ProcessInstance extends Entity  {
 
     public function setVariables(array $variables){
         return $this->_wrapper->setVariables($this, $variables);
-
     }
 
     public function setVariable($variableName, $variableValue){
         return $this->_wrapper->setVariable($this, $variableName, $variableValue);
+    }
 
+    public function deleteProcessInstance(){
+        return $this->_wrapper->deleteProcessInstance($this);
     }
 
 

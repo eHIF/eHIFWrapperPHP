@@ -121,6 +121,22 @@ class TaskWrapper extends Wrapper
         return $response;
     }
 
+    public function getHistory($task){
+        $processInstanceId = $task->processInstanceId;
+        $j_process_tasks =  $this->_activiti->request("history/historic-task-instances", Activiti::GET,
+            array("processInstanceId"=>$processInstanceId));
+
+        $tasks = array();
+
+        foreach($j_process_tasks->data as $j_process_task){
+            $tasks[] = new Task($j_process_task, $this);
+        }
+
+        return $tasks;
+
+
+    }
+
 
 
 }

@@ -184,4 +184,11 @@ class ProcessInstanceWrapper extends Wrapper{
     }
 
 
+    public function deleteProcessInstance($processInstance){
+        $id = $processInstance->id;
+        $response = $this->_activiti->delete("runtime/process-instances/".$id);
+        return $response;
+    }
+
+
 } 

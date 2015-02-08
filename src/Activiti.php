@@ -22,6 +22,7 @@ protected  $baseURL;
     const GET = "get";
     const POST = "post";
     const PUT = "put";
+    const DELETE = "delete";
     protected $client;
 
     public  static $last;
@@ -84,6 +85,10 @@ protected  $baseURL;
 
     function post($url, array $data = array()){
         return $this->request($url,Activiti::POST, $data);
+    }
+
+    function del($url, array $data = array()){
+        return $this->request($url,Activiti::DELETE, $data);
     }
 
     function get($url, array $data = array(), $fromCache = false){

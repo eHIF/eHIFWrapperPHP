@@ -167,7 +167,7 @@ class ProcessInstanceWrapper extends Wrapper{
         $id = $processInstance->id;
 
 
-        $response = $this->_activiti->delete("runtime/process-instances/".$id."/variables");
+        $response = $this->_activiti->del("runtime/process-instances/".$id."/variables");
 
         return $response;
 
@@ -177,7 +177,7 @@ class ProcessInstanceWrapper extends Wrapper{
     public function deleteVariable($processInstance, $variableName){
         $id = $processInstance->id;
 
-        $response = $this->_activiti->delete("runtime/process-instances/".$id."/variables/", $variableName);
+        $response = $this->_activiti->del("runtime/process-instances/".$id."/variables/", $variableName);
 
         return $response;
 
@@ -186,7 +186,7 @@ class ProcessInstanceWrapper extends Wrapper{
 
     public function deleteProcessInstance($processInstance){
         $id = $processInstance->id;
-        $response = $this->_activiti->delete("runtime/process-instances/".$id);
+        $response = $this->_activiti->del("runtime/process-instances/".$id);
         return $response;
     }
 

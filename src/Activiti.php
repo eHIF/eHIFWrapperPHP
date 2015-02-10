@@ -149,6 +149,13 @@ protected  $baseURL;
                 ));
                 $body = json_decode($response->getBody());
                 return $body;
+            case self::DELETE:
+                $response = $this->client->delete($this->baseURL . $action,array(
+                    "json"=>($data),
+                    'auth' => array($this->username, $this->password)
+                ));
+                $body = json_decode($response->getBody());
+                return $body;
             default:
                 return null;
 

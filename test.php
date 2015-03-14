@@ -12,7 +12,7 @@ require 'vendor/autoload.php';
 use eHIF\Activiti;
 
 
-$activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/", "kermit", "kermit");
+$activiti = new Activiti("http://147.102.33.146:8080/activiti-rest/service/", "kermit", "kermit");
 /*$processes = $activiti->processes->get();
 $users = $activiti->users->get();
 
@@ -47,8 +47,45 @@ $tasks[0]->complete();*/
 $response = $activiti->tasks->get(17530)->complete($data);*/
 //var_dump($response);
 
-$processInstance =  $activiti->processInstances->get('48719');
+$def =  $activiti->processes->get('D1_1:1:7504');
 
-$processInstance->setVariable("lol","troll");
+$processes = $def->getprocessModel()->processes;
 
-var_dump($processInstance->getvariable("lol"));
+$elements = $processes[0]->flowElements;
+
+
+$tasks = array();
+
+
+
+$id = "usertask1";
+
+$i=0;
+do{
+    $task = array_values(array_filter ($elements,
+        function($elem) use($id){
+            return $elem->id  == $id;
+        }
+    ))[0];
+
+
+    $outgoingFlows = $task->outgoingFlows;
+
+
+
+    if(count($outgoingFlows)>1 || count($outgoingFlows)<1){
+        break;
+    }
+    else{
+        $tasks[]=$task;
+        $id = $outgoingFlows[0]->targetRef;
+    }
+$i++;
+}
+while($i<10);
+
+foreach ($tasks as $userTask) {
+    var_dump($userTask->name);
+}
+
+

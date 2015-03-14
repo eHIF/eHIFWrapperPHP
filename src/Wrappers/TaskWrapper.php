@@ -114,6 +114,42 @@ class TaskWrapper extends Wrapper
     }
 
 
+    public function nextTasks(Task $task){
+        $process = $this->processDefinition($task);
+        $processModel = $process->getprocessModel()->processes[0];
+        $elements = $processModel->flowElements;
+
+        $tasks = array();
+
+        $id = $task->taskDefinitionKey;
+
+        $i=0;
+        do{
+            $task = array_values(array_filter ($elements,
+                function($elem) use($id){
+                    return $elem->id  == $id;
+                }
+            ))[0];
+
+
+            $outgoingFlows = $task->outgoingFlows;
+
+
+            if(count($outgoingFlows)>1 || count($outgoingFlows)<1){
+                break;
+            }
+            else{
+                $tasks[]=$task;
+                $id = $outgoingFlows[0]->targetRef;
+            }
+            $i++;
+        }
+        while($i<10);
+
+        return $tasks;
+    }
+
+
     public function assignUser($task,$user){
         $response = $this->_activiti->put("runtime/tasks/" . $task->id , array(
             "assignee"=>$user->id

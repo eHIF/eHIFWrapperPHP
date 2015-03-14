@@ -145,7 +145,7 @@ class TaskWrapper extends Wrapper
             $i++;
         }
         while($i<10);
-
+        array_shift($tasks);
         return $tasks;
     }
 

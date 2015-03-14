@@ -34,7 +34,7 @@ public function getform(){
         return $this->_wrapper->getHistory($this);
     }
 
-    public function nextTasks(){
+    public function getnextTasks(){
         return $this->_wrapper->nextTasks($this);
     }
 }

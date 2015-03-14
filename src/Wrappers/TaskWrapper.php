@@ -25,7 +25,7 @@ class TaskWrapper extends Wrapper
             $task = new Task($j_task, $this);
             return $task;
         } else {
-            $j_tasks = $this->_activiti->get("runtime/tasks",array("candidateOrAssigned", $this->_activiti->username, "size"=>$size), true);
+            $j_tasks = $this->_activiti->get("runtime/tasks",array("candidateOrAssigned"=> $this->_activiti->username, "size"=>$size), true);
             $tasks = array();
 
             foreach ($j_tasks->data as $j_task) {
@@ -80,7 +80,8 @@ class TaskWrapper extends Wrapper
 
     public function getWhereProcessInstance($processInstanceId){
         $j_process_tasks =  $this->_activiti->request("runtime/tasks", Activiti::GET,
-            array("processInstanceId"=>$processInstanceId));
+            array("processInstanceId"=>$processInstanceId,
+                "candidateOrAssigned" => $this->_activiti->username));
 
         $tasks = array();
 

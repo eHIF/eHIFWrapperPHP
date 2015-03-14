@@ -33,4 +33,8 @@ public function getform(){
     public function gethistory(){
         return $this->_wrapper->getHistory($this);
     }
+
+    public function nextTasks(){
+        return $this->_wrapper->nextTasks($this);
+    }
 }

@@ -139,10 +139,11 @@ class TaskWrapper extends Wrapper
             }
             else{
 
-                if (strpos($outgoingFlows[0]->targetRef, 'call') !== FALSE)
-                   break;
+
 
                 $tasks[]=$task;
+                if (strpos($outgoingFlows[0]->targetRef, 'call') !== FALSE)
+                    break;
                 $id = $outgoingFlows[0]->targetRef;
             }
             $i++;

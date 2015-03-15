@@ -134,11 +134,14 @@ class TaskWrapper extends Wrapper
 
             $outgoingFlows = $task->outgoingFlows;
 
-
             if(count($outgoingFlows)>1 || count($outgoingFlows)<1){
                 break;
             }
             else{
+
+                if (strpos($outgoingFlows[0]->targetRef, 'call') !== FALSE)
+                   break;
+
                 $tasks[]=$task;
                 $id = $outgoingFlows[0]->targetRef;
             }
